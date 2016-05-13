@@ -140,5 +140,8 @@ https://github.com/fiji/Auto_Threshold/blob/master/src/main/java/fiji/threshold/
 http://www.lsus.edu/faculty/~ecelebi/fourier.htm 
 http://sourceforge.net/projects/fourier-ipal
 
+Other code written by Jason Merritt and Seppe Kuehn at
+the University of Illinois at Urbana-Champaign.
+
 This code is covered by the GPLv2 license, the text of which
 is included in the LICENSE file.
