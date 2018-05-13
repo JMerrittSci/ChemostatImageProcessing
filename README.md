@@ -2,11 +2,60 @@
 ##               SECTIONS                ##
 ###########################################
 
-1. PACKAGE REQUIREMENTS
-2. DATA REQUIREMENTS
-3. USAGE
-4. USER VARIABLES
-5. ACCREDITATION AND LICENSE
+1. OVERVIEW
+2. PACKAGE REQUIREMENTS
+3. DATA REQUIREMENTS
+4. USAGE
+5. USER VARIABLES
+6. ACCREDITATION AND LICENSE
+
+###########################################
+##               OVERVIEW                ##
+###########################################
+
+Code designed to segment images of fluorescent E. coli
+cells and produce usable time series of counts of both
+planktonic cells and cell aggregates. A video showing
+image segmentation - prior to filtering of cell
+aggregates - is linked below:
+
+[![Image segmentation video](readme_imgs/youtube_im.png)](https://www.youtube.com/watch?v=eFJI9qvnxuM "Image segmentation video")
+
+Below is a brief overview of the segmentation process
+for planktonic cells, which can be near each other and
+potentially overlapping:
+
+![Image segmentation process](readme_imgs/imseg.png "Image segmentation process")
+
+(a) A region of interest containing possible cells is
+extracted from the initial, larger image (this example
+chosen as it was already known to contain three real
+cells).
+
+(b) The region is split up into 14 binary masks
+representing regions of varying brightness, which are
+eroded then dilated for simplification then re-layered
+into a 15-color composite mask.
+
+(c) Regions of locally maximum brightness are identified
+in the composite image and chosen as seed locations for
+generating possible cell boundaries.
+
+(d) The seed regions expand to cover the composite image
+(excluding the background), representing possible cell
+boundaries which can be projected back onto the original
+region of interest to generate information later fed into
+an SVM to be classified as cells or noise.
+
+Full details, including an overview of image quality
+assessment and time series generation, are available in
+our paper:
+
+[Quantitative high-throughput population dynamics in continuous-culture by automated microscopy](https://www.nature.com/articles/srep33173)
+
+The latest version of the code is fully commented and
+contains short summaries at the beginning of each Python
+script (located in the 'scripts' folder).
 
 ###########################################
 ##         PACKAGE REQUIREMENTS          ##
@@ -18,7 +67,7 @@
 - scikit-learn
 - scikit-image
 - (NOTE: Code has only been tested under
-   Ubuntu 14.04)
+   Ubuntu 14.04/16.04)
 
 ###########################################
 ##           DATA REQUIREMENTS           ##
@@ -129,6 +178,10 @@ The user variables are:
 ###########################################
 ##       ACCREDITATION AND LICENSE       ##
 ###########################################
+
+The code for the "maskhist" method in the imseg.py script
+is a slightly modified version of the "histogram" function
+from the scikit-image exposure package (skimage.exposure).
 
 The code for the "Moments" method in the imseg.py script
 was ported to Python from a port by Gabriel Landini

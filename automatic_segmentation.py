@@ -30,7 +30,7 @@ trainingSetFilePath='scripts/chromosomal.csv' # The filepath of
 clumpBrightnessThreshold=150 # A clump must have a max pixel
     # intensity (after smoothing) of at least this value or be
     # discarded. The intensity range is 0-255.
-clumpMeanBrightnessThreshold=150 # A clump must have a mean pixel
+clumpMeanBrightnessThreshold=100 # A clump must have a mean pixel
     # intensity (after smoothing) of at least this value or be
     # discarded. The intensity range is 0-255.
 clumpSizeThreshold=500 # A clump must have a pixel value area
